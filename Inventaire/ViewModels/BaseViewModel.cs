@@ -12,5 +12,5 @@ namespace BillingManagement.UI.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
-
+    //Change for initial commit
 }
