@@ -10,15 +10,14 @@ namespace BillingManagement.Business
     //o Dans le constructeur InvoicesDataService et en vous fiant sur le code précédent, ajoutez du code pour générer des Invoices pour chaque client.
     public class InvoiceDataService : IDataService<Invoice>
     {
-
-        readonly List<Invoice> invoices = new List<Invoice>();
+        readonly  List<Invoice> invoices= new List<Invoice>();
         
 
         public InvoiceDataService()
         {
             Random rdm = new Random();
 
-            for(int i = 0; i< 300; i++)
+            for(int i = 0; i< 150; i++)
             {
                 int rando = rdm.Next(20, 2000);
                 Invoice invoicee = new Invoice() { SubTotal = rando };
@@ -26,11 +25,9 @@ namespace BillingManagement.Business
             }
         }
 
-        public List<Invoice> Invoices => invoices;
-
         public IEnumerable<Invoice> GetAll()
         {
-            foreach (Invoice i in Invoices)
+            foreach (Invoice i in invoices)
             {
                 yield return i;
             }
