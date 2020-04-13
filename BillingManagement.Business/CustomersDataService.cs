@@ -1,8 +1,12 @@
-﻿using app_models;
+﻿using BillingManagement.Models;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace BillingManagement.Business
 {
+    //2. À la fin du constructeur de CustomersDataService, ajoutez le code qui est sous ce lien.
     public class CustomersDataService : IDataService<Customer>
     {
         readonly List<Customer> customers;
@@ -113,6 +117,43 @@ namespace BillingManagement.Business
                 new Customer() {Name="Randall", LastName="Griffith",Address="Ap #295-2152 Cras Street", City="Price",Province="QC", PostalCode="J3T 8R1", PicturePath="/images/user.png", ContactInfo="Home : 108-300-4964"},
 
             };
+
+
+            //Contactinfos
+            List<ContactInfo> contactInfos = new ContactInfosDataService().GetAll().ToList();
+            List<Invoice> invoices = new InvoiceDataService().GetAll().ToList();
+
+
+            Random rnd = new Random();
+
+            foreach (Customer c in customers)
+            {
+                c.ContactInfos = new ObservableCollection<ContactInfo>();
+               
+                
+                var nbContacts = rnd.Next(1, 4);
+
+                for (int i = 0; i < nbContacts; i++)
+                {
+                    var index = rnd.Next(contactInfos.Count);
+                    var ci = contactInfos[index];
+                    c.ContactInfos.Add(ci);
+                }
+
+                var nbInvoice = rnd.Next(1, 4);
+                for (int i = 0; i < nbInvoice; i++)
+                {
+                    var index = rnd.Next(invoices.Count);
+                    var ci = invoices[index];
+                    invoices[index].Customer = c;
+                    c.InvoicesCustomer.Add(ci);
+                    
+                    
+                }
+            }
+
+
+
         }
         public IEnumerable<Customer> GetAll()
         {

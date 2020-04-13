@@ -1,9 +1,10 @@
-﻿using app_models;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 
 namespace BillingManagement.Models
 {
@@ -25,18 +26,19 @@ namespace BillingManagement.Models
 
         //g.Double Total : Retourne la somme de SubTotal, FedTax et ProvTax.
 
-        private static List<bool> UsedCounter = new List<bool>();
-        private int invoiceId;
+        
         private Customer customer;
         private double subTotal;
         private double fedTax;
         private double provTax;
         private double total;
+        public static int globalId = 0;
 
-        public int InvoiceId { get => invoiceId; private set => invoiceId = value; }
+       
         public readonly DateTime CreationDateTime;
 
-        public Customer Customer { get=>Customer;
+        public int InvoiceId { get; set; }
+        public Customer Customer { get=>customer;
             set
             {
                 customer = value;
@@ -65,21 +67,7 @@ namespace BillingManagement.Models
         {
             get => (SubTotal+FedTax+ProvTax);
         }
-        private int GetAvailableIndex()
-        {
-            bool found = false;
-            int i = 0;
-            while (found != true)
-            {
-                if (UsedCounter[i] != true)
-                {
-                    found = true;
-                }
-                else
-                    i++;
-            }
-            return i;
-        }
+        
 
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -97,11 +85,14 @@ namespace BillingManagement.Models
         public Invoice()
         {
             CreationDateTime = DateTime.Now;
+            InvoiceId = Interlocked.Increment(ref globalId);
+
         }
         public Invoice(Customer cust)
         {
             CreationDateTime = DateTime.Now;
-            Customer = cust;
+            InvoiceId = Interlocked.Increment(ref globalId);
+            Customer = cust;           
         }
     }
 }

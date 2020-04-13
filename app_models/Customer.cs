@@ -1,9 +1,10 @@
-﻿using System;
+﻿using BillingManagement.Models;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace app_models
+namespace BillingManagement.Models
 {
     public class Customer : INotifyPropertyChanged
     {
@@ -15,6 +16,7 @@ namespace app_models
         private string postalCode;
         private string picturePath;
         private string contactInfo;
+        
 
         #region Property definitions
         public string Name
@@ -80,7 +82,7 @@ namespace app_models
                 OnPropertyChanged();
             }
         }
-
+       
         public string Info => $"{LastName}, {Name}";
 
         #endregion
@@ -88,9 +90,11 @@ namespace app_models
         public Customer()
         {
             PicturePath = "images/user.png";
+            InvoicesCustomer = new ObservableCollection<Invoice>();
         }
 
         public ObservableCollection<ContactInfo> ContactInfos { get; set; }
+        public ObservableCollection<Invoice> InvoicesCustomer { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
