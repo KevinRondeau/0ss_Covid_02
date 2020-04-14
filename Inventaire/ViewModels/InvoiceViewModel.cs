@@ -8,44 +8,19 @@ using System.Text;
 
 namespace BillingManagement.UI.ViewModels
 {
-    class InvoiceViewModel :BaseViewModel
+    public class InvoiceViewModel :BaseViewModel
     {
-        readonly InvoiceDataService invoiceDataService = new InvoiceDataService();
+		private Invoice invoice;
 
-        private ObservableCollection<Invoice> invoices;
-        private Invoice selectedInvoice;
+		public Invoice Invoice
+		{
+			get { return invoice; }
+			set
+			{
+				invoice = value;
+				OnPropertyChanged();
+			}
+		}
 
-        public ObservableCollection<Invoice> Invoices
-        {
-            get => invoices;
-            private set
-            {
-               invoices= value;
-                OnPropertyChanged();
-            }
-        }
-
-        public Invoice SelectedInvoice
-        {
-            get => selectedInvoice;
-            set
-            {
-                selectedInvoice = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public InvoiceViewModel()
-        {
-            InitValues();
-        }
-
-        private void InitValues()
-        {
-            Invoices = new ObservableCollection<Invoice>(invoiceDataService.GetAll());
-            Debug.WriteLine(invoices.Count);
-        }
-
-
-    }
+	}
 }

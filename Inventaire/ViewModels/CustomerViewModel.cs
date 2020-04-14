@@ -6,43 +6,20 @@ using System.Diagnostics;
 
 namespace BillingManagement.UI.ViewModels
 {
-    public class CustomerViewModel : BaseViewModel
+    class CustomerViewModel : BaseViewModel
     {
-        readonly CustomersDataService customersDataService = new CustomersDataService();
 
-        private ObservableCollection<Customer> customers;
-        private Customer selectedCustomer;
-
-        public ObservableCollection<Customer> Customers
+        private Customer customer;
+ 
+        public Customer Customer
         {
-            get => customers;
-            private set
-            {
-                customers = value;
+            get { return customer; }
+            set {
+                customer = value;
                 OnPropertyChanged();
             }
         }
 
-        public Customer SelectedCustomer
-        {
-            get => selectedCustomer;
-            set
-            {
-                selectedCustomer = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public CustomerViewModel()
-        {
-            InitValues();
-        }
-
-        private void InitValues()
-        {
-            Customers = new ObservableCollection<Customer>(customersDataService.GetAll());
-            Debug.WriteLine(Customers.Count);
-        }
-
+      
     }
 }
