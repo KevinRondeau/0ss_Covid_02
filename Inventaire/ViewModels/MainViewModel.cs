@@ -42,7 +42,7 @@ namespace BillingManagement.UI.ViewModels
 
 		public MainViewModel()
 		{
-			//ChangeViewCommand = new ChangeViewCommand(ChangeView);
+			ChangeViewCommand = new ChangeViewCommand(ChangeView);
 
 			customerViewModel = new CustomerViewModel();
 			customerListViewModel = new CustomersListViewModel(customerViewModel);
@@ -54,19 +54,19 @@ namespace BillingManagement.UI.ViewModels
 			CentralViewModel = customerViewModel;
 
 		}
-		//private void ChangeView(string vm)
-		//{
-		//	switch (vm)
-		//	{
-		//		case "Clients":
-		//			LeftViewModel = customerListViewModel;
-		//			CentralViewModel = customerViewModel;
-		//			break;
-		//		case "Factures":
-		//			LeftViewModel = invoiceListViewModel;
-		//			CentralViewModel = invoiceViewModel;
-		//			break;
-		//	}
-		//}
+		private void ChangeView(string vm)
+		{
+			switch (vm)
+			{
+				case "Clients":
+					LeftViewModel = customerListViewModel;
+					CentralViewModel = customerViewModel;
+					break;
+				case "Factures":
+					LeftViewModel = invoiceListViewModel;
+					CentralViewModel = invoiceViewModel;
+					break;
+			}
+		}
 	}
 }

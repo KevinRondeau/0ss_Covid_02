@@ -121,7 +121,7 @@ namespace BillingManagement.Business
 
             //Contactinfos
             List<ContactInfo> contactInfos = new ContactInfosDataService().GetAll().ToList();
-            List<Invoice> invoices = new InvoiceDataService().GetAll().ToList();
+            
 
 
             Random rnd = new Random();
@@ -140,16 +140,7 @@ namespace BillingManagement.Business
                     c.ContactInfos.Add(ci);
                 }
 
-                var nbInvoice = rnd.Next(1, 4);
-                for (int i = 0; i < nbInvoice; i++)
-                {
-                    var index = rnd.Next(invoices.Count);
-                    var ci = invoices[index];
-                    invoices[index].Customer = c;
-                    c.InvoicesCustomer.Add(ci);
-                    
-                    
-                }
+              
             }
 
 

@@ -12,10 +12,14 @@ namespace BillingManagement.UI.Views
         
         public MainView()
         {
-           InitializeComponent();
+            InitializeComponent();
             DataContext = new MainViewModel();
         }
 
+        private void View_Close(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
 
     }
 }

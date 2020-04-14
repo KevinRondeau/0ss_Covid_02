@@ -59,9 +59,7 @@
 
 
             </StackPanel>
-            <StackPanel Grid.Row="6" Grid.Column="2" Margin="6">
-                <Button Content="Supprimer client" />
-            </StackPanel>
+            
             <Image Margin="6" Grid.Row="7"
                        Source="{Binding Customer.PicturePath}"
                        Stretch="Uniform"/>

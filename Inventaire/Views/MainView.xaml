@@ -16,6 +16,12 @@
         <DataTemplate DataType="{x:Type vm:CustomerViewModel}">
             <views:UserControlCustomerView DataContext="{Binding}"/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:InvoiceListViewModel}">
+            <views:InvoiceListView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:InvoiceViewModel}">
+            <views:UserControl_InvoiceView DataContext="{Binding}"/>
+        </DataTemplate>
     </Window.Resources>
     <DockPanel>
         <StackPanel DockPanel.Dock="Top">
@@ -23,11 +29,11 @@
                 <MenuItem Header="_Fichier">
                     <MenuItem Header="_Ouvrir..."/>
                     <MenuItem Header="_Sauvegarder"/>
-                    <MenuItem Header="_Fermer"/>
+                    <MenuItem Header="_Fermer" Click="View_Close"/>
                     <Separator/>
                     <MenuItem Header="_Nouveau client" />
                     <Separator/>
-                    <MenuItem Header="_Quitter"/>
+                    <MenuItem Header="_Quitter" Click="View_Close"/>
                 </MenuItem>
                 <MenuItem Header="_Édition">
                     <MenuItem Header="Couper..."/>
@@ -39,17 +45,13 @@
                     <MenuItem Header="Fonction 2"/>
                     <MenuItem Header="Fonction 3"/>
                 </MenuItem>
+                <MenuItem Header="Enregistrements">
+                    <MenuItem Header="Client" Command="{Binding ChangeViewCommand}" CommandParameter="Clients"/>
+                    <MenuItem Header="Facture" Command="{Binding ChangeViewCommand}" CommandParameter="Factures"/>
+                </MenuItem>
             </Menu>
         </StackPanel>
-        <ToolBar DockPanel.Dock="Top">
-            <Button >
-                <Image Source="/images/new_user.png" Height="32" Width="32" Stretch="Uniform"/>
-            </Button>
-            <Separator/>
-            <Button >
-                <Image Source="/images/exit.png" Height="32" Width="32" Stretch="Uniform"/>
-            </Button>
-        </ToolBar>
+        
         <StatusBar DockPanel.Dock="Bottom" Height="25">
             <TextBlock Text="Client sélectionné : " />
             <StackPanel Orientation="Horizontal">

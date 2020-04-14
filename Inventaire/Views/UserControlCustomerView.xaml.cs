@@ -1,6 +1,9 @@
-﻿using BillingManagement.UI.ViewModels;
+﻿using BillingManagement.Business;
+using BillingManagement.Models;
+using BillingManagement.UI.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,11 +22,13 @@ namespace BillingManagement.UI.Views
     /// </summary>
     public partial class UserControlCustomerView : UserControl
     {
-        
+       
         public UserControlCustomerView()
         {
             InitializeComponent();
         }
+
+        
 
     }
 }

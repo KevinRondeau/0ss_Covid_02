@@ -26,7 +26,7 @@ namespace BillingManagement.Models
             {
                 name = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(Info));
+              //  OnPropertyChanged(nameof(Info));
             }
         }
         public string LastName { get => lastName; 
@@ -34,7 +34,7 @@ namespace BillingManagement.Models
             {
                 lastName = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(Info));
+               // OnPropertyChanged(nameof(Info));
             }
         }
         public string Address { get => address; 
@@ -83,7 +83,7 @@ namespace BillingManagement.Models
             }
         }
        
-        public string Info => $"{LastName}, {Name}";
+       //public string Info => $"{LastName}, {Name}";
 
         #endregion
 
